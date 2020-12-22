@@ -7,6 +7,8 @@
 
 using namespace std;
 
+bool NumberHasFourDigits(int number);
+void InputWhileCorrect(int& number);
 void WhichAsciiToUse(int number, int row);
 void ASCII_Zero(int row);
 void ASCII_One(int row);
@@ -20,15 +22,16 @@ void ASCII_Eight(int row);
 void ASCII_Nine(int row);
 void PrintColon(int row);
 
+
 int main()
 {
     int startingInput;
+    InputWhileCorrect(startingInput);
 
-    while (!(cin>> startingInput) || startingInput < 0)
+    while (!NumberHasFourDigits(startingInput))
     {
-        cout << "Input a positive integer!\n";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Input must have exactly four digits.\n";
+        InputWhileCorrect(startingInput);
     }
 
     int minutes, seconds;
@@ -83,6 +86,28 @@ int main()
     
     cout << '\a';
     system("pause");
+}
+
+bool NumberHasFourDigits(int number)
+{
+    int counter = 0;
+    while (number > 0)
+    {
+        number /= 10;
+        counter++;
+    }
+
+    return (counter == 4) ? true : false;
+}
+
+void InputWhileCorrect(int& number)
+{
+    while (!(cin >> number) || number < 0)
+    {
+        cout << "Input a positive integer with exactly four digits.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
 }
 
 void WhichAsciiToUse(int number, int row)
