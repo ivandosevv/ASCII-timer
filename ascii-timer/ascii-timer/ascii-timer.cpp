@@ -39,6 +39,7 @@ void ASCII_Eight(int row);
 void ASCII_Nine(int row);
 void PrintColon(int row);
 void PrintWelcomeMessage();
+void PrintGoodByeMessage();
 
 int main()
 {
@@ -156,6 +157,8 @@ int main()
     }
     
     // Creates a sound when the timer has finished.
+    system("cls");
+    PrintGoodByeMessage();
     cout << '\a';
 
     system("pause");
@@ -482,5 +485,17 @@ void PrintWelcomeMessage()
     cout << "     \\\\ //  \\\\ //   ||      |~|____ |\\-----|| #### | //   \\//   \\\\ |\\\\_______" << endl;
     cout << "      \\//    \\\\/    ||____|||______|\\~~~~~~/\\******///           \\\\|/////////\\" << endl;
     cout << "\n\n" << setw(CENTER_OUTPUT_MESSAGE) << "Input a 4 digit number: ";
+}
+
+void PrintGoodByeMessage()
+{
+    cout << "/!!!!!!!!!\\    OOOOOO     #!!!!!!#  %%%%%%%%   ))))))))) \\\\\\    /// /\\/\\/\\/\\/ ||" << endl;
+    cout << "^^|           OO    OO   #!!    !!# %      %%  (       (( \\\\\\  ///  \\/        ||" << endl;
+    cout << "^^|          OO      OO  #!      !# %       %% )       ))  \\\\\\///   /\\        ||" << endl;
+    cout << "^^|   ____  OO        OO #        # %       %% (((((((((    ||||    \\/\\/\\/\\/\\ ||" << endl;
+    cout << "^^|  |^^^^|  OO      OO  #!      !# %       %% )       ))   \\||/    /\\        ||" << endl;
+    cout << "^^|____|^^|   OO    OO   #!!    !!# %      %%  (       ((    ||     \\/        ||" << endl;
+    cout << "\\!!!!!!!!!/    OOOOOO     #!!!!!!#  %%%%%%%%   )))))))))     ||     /\\/\\/\\/\\/ ()" << endl;
+    cout << "\n\n";
 }
 
