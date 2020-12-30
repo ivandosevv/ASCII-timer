@@ -18,6 +18,7 @@
 #include <chrono>
 #include <thread>
 #include <iomanip>
+#include <cstdlib>
 
 using namespace std;
 
@@ -82,7 +83,8 @@ int main()
         // Outputs empty spaces, so that we can center our timer.
         CenterHeight();
 
-        for (int i = 1; i <= 10; i++)
+        const int TOTAL_NUMBER_ROWS = 11;
+        for (int i = 1; i <= TOTAL_NUMBER_ROWS; i++)
         {
             int numberOfDigitsInMinutes = NumberOfDigitsInNumber(minutes);
 
@@ -90,27 +92,27 @@ int main()
             // exactly how to center it and use the needed ASCII art.
             if (numberOfDigitsInMinutes == 3)
             {
-                const int CENTER_TIMER = 20;
+                const int CENTER_TIMER = 19;
 
                 cout << setw(CENTER_TIMER);
 
                 WhichAsciiToUse(minutes / 100, i);
-                cout << " ";
+                cout << "   ";
                 WhichAsciiToUse(minutes % 100 / 10, i);
-                cout << " ";
+                cout << "   ";
             }
             else if (numberOfDigitsInMinutes == 2)
             {
-                const int CENTER_TIMER = 27;
+                const int CENTER_TIMER = 25;
 
                 cout << setw(CENTER_TIMER);
 
                 WhichAsciiToUse(minutes / 10, i);
-                cout << " ";
+                cout << "   ";
             }
             else
             {
-                const int CENTER_TIMER = 30;
+                const int CENTER_TIMER = 32;
 
                 cout << setw(CENTER_TIMER);
             }
@@ -121,9 +123,16 @@ int main()
             WhichAsciiToUse(minutes % 10, i);
             PrintColon(i);
             WhichAsciiToUse(seconds / 10, i);
-            cout << " ";
+            cout << "   ";
             WhichAsciiToUse(seconds % 10, i);
-            cout << endl;
+
+            // We check if we have reached the ending, because once the program
+            // finishes printing the timer, then we must not end the line, so that
+            // CenterHeight() can center the timer correctly.
+            if (i != TOTAL_NUMBER_ROWS)
+            {
+                cout << endl;
+            }
         }
 
         // If we have reached the end of the seconds, then we start again and reduce
@@ -224,8 +233,9 @@ void CenterHeight()
 {
     const int MAX_ROWS = 25;
     const int MAX_COLS = 80;
+    const int NUMBER_HEIGHT = 11;
 
-    const int ROWS_TO_SKIP = (MAX_ROWS - 10) / 2;
+    const int ROWS_TO_SKIP = (MAX_ROWS - NUMBER_HEIGHT) / 2;
 
     for (int i = 0; i < ROWS_TO_SKIP; i++)
     {
@@ -256,16 +266,17 @@ void ASCII_Zero(int row)
 {
     switch (row)
     {
-	    case 1: cout << " #$#$#$#$  "; break;
-	    case 2: cout << "#$#$#$#$#$#"; break;
-	    case 3: cout << "$#$     $#$"; break;
-	    case 4: cout << "#$#     #$#"; break;
-	    case 5: cout << "$#$     $#$"; break;
-	    case 6: cout << "#$#     #$#"; break;
-	    case 7: cout << "$#$     $#$"; break;
-	    case 8: cout << "#$#     #$#"; break;
-	    case 9: cout << "$#$#$#$#$#$"; break;
-	    case 10:cout << " $#$#$#$#$ "; break;
+	    case 1: cout << "0000000000"; break;
+	    case 2: cout << "0        0"; break;
+	    case 3: cout << "0        0"; break;
+	    case 4: cout << "0        0"; break;
+	    case 5: cout << "0        0"; break;
+	    case 6: cout << "0        0"; break;
+	    case 7: cout << "0        0"; break;
+	    case 8: cout << "0        0"; break;
+	    case 9: cout << "0        0"; break;
+	    case 10: cout << "0        0"; break;
+        case 11: cout << "0000000000"; break;
     }
 }
 
@@ -274,16 +285,17 @@ void ASCII_One(int row)
 {
     switch (row)
     {
-	    case 1: cout << "      $$   "; break;
-	    case 2: cout << "     $#$   "; break;
-	    case 3: cout << "    $#$#   "; break;
-	    case 4: cout << "   $# #$   "; break;
-	    case 5: cout << "  $#  $#   "; break;
-	    case 6: cout << " $#   #$   "; break;
-	    case 7: cout << "$#    $#   "; break;
-	    case 8: cout << "      #$   "; break;
-	    case 9: cout << "      $#   "; break;
-	    case 10:cout << "   $#$#$#$#"; break;
+	    case 1: cout << "         1"; break;
+	    case 2: cout << "         1"; break;
+	    case 3: cout << "         1"; break;
+	    case 4: cout << "         1"; break;
+	    case 5: cout << "         1"; break;
+	    case 6: cout << "         1"; break;
+	    case 7: cout << "         1"; break;
+	    case 8: cout << "         1"; break;
+	    case 9: cout << "         1"; break;
+	    case 10: cout << "         1"; break;
+        case 11: cout << "         1"; break;
     }
 }
 
@@ -292,16 +304,17 @@ void ASCII_Two(int row)
 {
     switch (row)
     {
-        case 1: cout << " $#$#$#$#  "; break;
-        case 2: cout << "$#$#$#$#$# "; break;
-        case 3: cout << "$      $#$ "; break;
-        case 4: cout << "      #$#  "; break;
-        case 5: cout << "     $#$   "; break;
-        case 6: cout << "    #$#    "; break;
-        case 7: cout << "   $#$     "; break;
-        case 8: cout << "  #$#      "; break;
-        case 9: cout << "$#$     #$ "; break;
-        case 10:cout << "$#$#$#$#$#$"; break;
+        case 1: cout << "2222222222"; break;
+        case 2: cout << "         2"; break;
+        case 3: cout << "         2"; break;
+        case 4: cout << "         2"; break;
+        case 5: cout << "         2"; break;
+        case 6: cout << "2222222222"; break;
+        case 7: cout << "2         "; break;
+        case 8: cout << "2         "; break;
+        case 9: cout << "2         "; break;
+        case 10: cout << "2         "; break;
+        case 11: cout << "2222222222"; break;
     }
 }
 
@@ -310,16 +323,17 @@ void ASCII_Three(int row)
 {
     switch (row)
     {
-        case 1: cout << " $#$#$#$#$ "; break;
-        case 2: cout << "$#$#$#$#$#$"; break;
-        case 3: cout << "$       #$#"; break;
-        case 4: cout << "       $#$ "; break;
-        case 5: cout << "  #$#$#$#$ "; break;
-        case 6: cout << "  $#$#$#$# "; break;
-        case 7: cout << "       #$# "; break;
-        case 8: cout << "$       $#$"; break;
-        case 9: cout << "#$#$#$#$#$#"; break;
-        case 10:cout << " #$#$#$#$# "; break;
+        case 1: cout << "3333333333"; break;
+        case 2: cout << "         3"; break;
+        case 3: cout << "         3"; break;
+        case 4: cout << "         3"; break;
+        case 5: cout << "         3"; break;
+        case 6: cout << "3333333333"; break;
+        case 7: cout << "         3"; break;
+        case 8: cout << "         3"; break;
+        case 9: cout << "         3"; break;
+        case 10: cout << "         3"; break;
+        case 11: cout << "3333333333"; break;
     }
 }
 
@@ -328,16 +342,17 @@ void ASCII_Four(int row)
 {
     switch (row)
     {
-        case 1: cout << "      $#$  "; break;
-        case 2: cout << "     $#$#  "; break;
-        case 3: cout << "    $#$#$  "; break;
-        case 4: cout << "   $#$#$#  "; break;
-        case 5: cout << "  $#$ $#$  "; break;
-        case 6: cout << " $#$  #$#  "; break;
-        case 7: cout << "$#$   $#$#$"; break;
-        case 8: cout << "#$#$#$#$#$#"; break;
-        case 9: cout << "     #$#   "; break;
-        case 10:cout << "    #$#$#  "; break;
+        case 1: cout << "4        4"; break;
+        case 2: cout << "4        4"; break;
+        case 3: cout << "4        4"; break;
+        case 4: cout << "4        4"; break;
+        case 5: cout << "4        4"; break;
+        case 6: cout << "4444444444"; break;
+        case 7: cout << "         4"; break;
+        case 8: cout << "         4"; break;
+        case 9: cout << "         4"; break;
+        case 10: cout << "         4"; break;
+        case 11: cout << "         4"; break;
     }
 }
 
@@ -346,16 +361,17 @@ void ASCII_Five(int row)
 {
     switch (row)
     {
-        case 1: cout << "#$#$#$#$#$#"; break;
-        case 2: cout << "$#$#$#$#$#$"; break;
-        case 3: cout << "#$         "; break;
-        case 4: cout << "$#$        "; break;
-        case 5: cout << "#$#$#$     "; break;
-        case 6: cout << " #$#$#$#$  "; break;
-        case 7: cout << "       $#$ "; break;
-        case 8: cout << "        $#$"; break;
-        case 9: cout << "#$     $#$ "; break;
-        case 10:cout << " #$#$#$#$  "; break;
+        case 1: cout << "5555555555"; break;
+        case 2: cout << "5         "; break;
+        case 3: cout << "5         "; break;
+        case 4: cout << "5         "; break;
+        case 5: cout << "5         "; break;
+        case 6: cout << "5555555555"; break;
+        case 7: cout << "         5"; break;
+        case 8: cout << "         5"; break;
+        case 9: cout << "         5"; break;
+        case 10: cout << "         5"; break;
+        case 11: cout << "5555555555"; break;
     }
 }
 
@@ -364,16 +380,17 @@ void ASCII_Six(int row)
 {
     switch (row)
     {
-        case 1: cout << "  $#$#$#$  "; break;
-        case 2: cout << " $#$#$#$#$ "; break;
-        case 3: cout << "$#$      $ "; break;
-        case 4: cout << "#$#        "; break;
-        case 5: cout << "$#$#$#$#$  "; break;
-        case 6: cout << "#$#$#$#$#$ "; break;
-        case 7: cout << "$#$     #$#"; break;
-        case 8: cout << "#$#     $#$"; break;
-        case 9: cout << "$#$     #$#"; break;
-        case 10:cout << " $#$#$#$#$ "; break;
+        case 1: cout << "6666666666"; break;
+        case 2: cout << "6         "; break;
+        case 3: cout << "6         "; break;
+        case 4: cout << "6         "; break;
+        case 5: cout << "6         "; break;
+        case 6: cout << "6666666666"; break;
+        case 7: cout << "6        6"; break;
+        case 8: cout << "6        6"; break;
+        case 9: cout << "6        6"; break;
+        case 10: cout << "6        6"; break;
+        case 11: cout << "6666666666"; break;
     }
 }
 
@@ -382,16 +399,17 @@ void ASCII_Seven(int row)
 {
     switch (row)
     {
-        case 1: cout << "$#$#$#$#$#$"; break;
-        case 2: cout << "#$#$#$#$#$#"; break;
-        case 3: cout << "$#     #$# "; break;
-        case 4: cout << "      #$#  "; break;
-        case 5: cout << "     #$#   "; break;
-        case 6: cout << "    #$#    "; break;
-        case 7: cout << "   #$#     "; break;
-        case 8: cout << "  #$#      "; break;
-        case 9: cout << " #$#       "; break;
-        case 10:cout << "#$#        "; break;
+        case 1: cout << "7777777777"; break;
+        case 2: cout << "         7"; break;
+        case 3: cout << "         7"; break;
+        case 4: cout << "         7"; break;
+        case 5: cout << "         7"; break;
+        case 6: cout << "         7"; break;
+        case 7: cout << "         7"; break;
+        case 8: cout << "         7"; break;
+        case 9: cout << "         7"; break;
+        case 10: cout << "         7"; break;
+        case 11: cout << "         7"; break;
     }
 }
 
@@ -400,16 +418,17 @@ void ASCII_Eight(int row)
 {
     switch (row)
     {
-        case 1: cout << " #$#$#$#$# "; break;
-        case 2: cout << "#$#$#$#$#$#"; break;
-        case 3: cout << "$#$     $#$"; break;
-        case 4: cout << "#$#     #$#"; break;
-        case 5: cout << " #$#$#$#$# "; break;
-        case 6: cout << " $#$#$#$#$ "; break;
-        case 7: cout << "$#$     $#$"; break;
-        case 8: cout << "#$#     #$#"; break;
-        case 9: cout << "$#$#$#$#$#$"; break;
-        case 10:cout << " $#$#$#$#$ "; break;
+        case 1: cout << "8888888888"; break;
+        case 2: cout << "8        8"; break;
+        case 3: cout << "8        8"; break;
+        case 4: cout << "8        8"; break;
+        case 5: cout << "8        8"; break;
+        case 6: cout << "8888888888"; break;
+        case 7: cout << "8        8"; break;
+        case 8: cout << "8        8"; break;
+        case 9: cout << "8        8"; break;
+        case 10: cout << "8        8"; break;
+        case 11: cout << "8888888888"; break;
     }
 }
 
@@ -418,16 +437,17 @@ void ASCII_Nine(int row)
 {
     switch (row)
     {
-        case 1: cout << " $#$#$#$#  "; break;
-        case 2: cout << "$#$#$#$#$# "; break;
-        case 3: cout << "#$#     #$#"; break;
-        case 4: cout << "$#$     $#$"; break;
-        case 5: cout << "#$#$#$#$#$#"; break;
-        case 6: cout << " #$#$#$#$#$"; break;
-        case 7: cout << "        #$#"; break;
-        case 8: cout << "        $#$"; break;
-        case 9: cout << "$#      #$#"; break;
-        case 10:cout << " #$#$#$#$# "; break;
+        case 1: cout << "9999999999"; break;
+        case 2: cout << "9        9"; break;
+        case 3: cout << "9        9"; break;
+        case 4: cout << "9        9"; break;
+        case 5: cout << "9        9"; break;
+        case 6: cout << "9999999999"; break;
+        case 7: cout << "         9"; break;
+        case 8: cout << "         9"; break;
+        case 9: cout << "         9"; break;
+        case 10: cout << "         9"; break;
+        case 11: cout << "9999999999"; break;
     }
 }
 
@@ -445,7 +465,8 @@ void PrintColon(int row)
         case 7: cout << " # "; break;
         case 8: cout << " # "; break;
         case 9: cout << "   "; break;
-        case 10:cout << "   "; break;
+        case 10: cout << "   "; break;
+        case 11: cout << "   "; break;
     }
 }
 
