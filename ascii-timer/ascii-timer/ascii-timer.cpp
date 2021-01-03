@@ -62,9 +62,9 @@ int main()
         // Cleans console.
         system("cls");
 
-        const int CENTER_OUTPUT_MESSAGE = 55;
+        const int CENTER_OUTPUT_MESSAGE = 60;
 
-        cout << "\n\n\n\n\n" << setw(CENTER_OUTPUT_MESSAGE) << "Input must have exactly four digits: ";
+        cout << "\n\n\n\n\n" << setw(CENTER_OUTPUT_MESSAGE) << "Input a positive integer with exactly four digits: ";
         startingInput = InputWhileCorrect();
     }
 
@@ -93,7 +93,16 @@ int main()
             // exactly how to center it and use the needed ASCII art.
             if (numberOfDigitsInMinutes == 3)
             {
-                const int CENTER_TIMER = 19;
+                int CENTER_TIMER;
+
+                if (minutes / 100 == 1)
+                {
+                    CENTER_TIMER = 15;
+                }
+                else
+                {
+                    CENTER_TIMER = 19;
+                }
 
                 cout << setw(CENTER_TIMER);
 
@@ -102,20 +111,22 @@ int main()
                 WhichAsciiToUse(minutes % 100 / 10, i);
                 cout << "   ";
             }
-            else if (numberOfDigitsInMinutes == 2)
+            else
             {
-                const int CENTER_TIMER = 25;
+                int CENTER_TIMER;
+                if (minutes / 10 == 1)
+                {
+                    CENTER_TIMER = 22;
+                }
+                else
+                {
+                    CENTER_TIMER = 26;
+                }
 
                 cout << setw(CENTER_TIMER);
 
                 WhichAsciiToUse(minutes / 10, i);
                 cout << "   ";
-            }
-            else
-            {
-                const int CENTER_TIMER = 32;
-
-                cout << setw(CENTER_TIMER);
             }
 
             // These functions are universal, because it doesn't matter how big
@@ -162,6 +173,8 @@ int main()
     cout << '\a';
 
     system("pause");
+
+    return 0;
 }
 
 // Checks if the given number has EXACTLY 4 digits.
@@ -461,12 +474,12 @@ void PrintColon(int row)
     {
         case 1: cout << "   "; break;
         case 2: cout << "   "; break;
-        case 3: cout << " # "; break;
-        case 4: cout << " # "; break;
-        case 5: cout << "   "; break;
+        case 3: cout << "   "; break;
+        case 4: cout << "   "; break;
+        case 5: cout << " # "; break;
         case 6: cout << "   "; break;
         case 7: cout << " # "; break;
-        case 8: cout << " # "; break;
+        case 8: cout << "   "; break;
         case 9: cout << "   "; break;
         case 10: cout << "   "; break;
         case 11: cout << "   "; break;
